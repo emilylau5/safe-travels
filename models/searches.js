@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Search = sequelize.define("Search", {
+  var Search = sequelize.define("search", {
     userId: DataTypes.INTEGER,
     city: {
       type: DataTypes.STRING,
@@ -32,12 +32,26 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  //associate search with hotels
-  Search.associate = function(models) {
-    Search.hasMany(models.Hotel, {
-      onDelete : "cascade"
-    });
-  };
+
+  // //associate search with hotels
+  // Search.associate = function(models) {
+  //   Search.hasMany(models.Hotel, {
+  //     onDelete : "cascade"
+  //   });
+  // };  
+
+  //   Search.associate = function(models) {
+  //     Search.belongsTo(models.User, {
+  //       foreignKey : {
+  //       allowNull : false
+  //     }
+  //   });  
+  // };
 
   return Search;
-}
+};
+
+
+
+
+

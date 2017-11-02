@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "database_development",
+    "database": "safe_travels",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
