@@ -10,12 +10,12 @@ $(document).ready(function() {
     var pass = $("#password-input").val();
     var passConfirm = $("#Confirm-password-input").val();
     if(pass === passConfirm){
-      var User = sequelize.define("User", {
+      var User = {
         userName: $("#username-input").val(),
         password: pass,
-        email: $("#email-input").val(),
-      });
-      $.post("ROUTE", addUser);
+        email: $("#email-input").val()
+      };
+      $.post("api/users", addUser);
     }
     else {
       alert("Passwords do not match")
