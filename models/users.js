@@ -12,6 +12,13 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
+  User.associate = function(models) {
+    //Associating User with Hotels
+    User.hasMany(models.Hotel, {
+      onDelete : "cascade"
+    });
+  };
+
   return User;
 };
 
