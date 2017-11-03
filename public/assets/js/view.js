@@ -51,11 +51,13 @@ $(function ()
    $("#f_elem_city").autocomplete("option", "delay", 100);
   });
 //end autocomplete
+
 //grab lat and lng from autocomplete
 function searchCity() {
   console.log(city);
   $.post("/search", city, function(data) {
     console.log(data);
+    initMap(city.location, data.results)
   });
 } //end searchCity
 

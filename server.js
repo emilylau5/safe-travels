@@ -41,7 +41,7 @@ app.post("/search", function(request, response) {//this is Justin's testing of g
    
   var client = new Client();
 
-  var gMapsKey = 'AIzaSyD6aSsAsp9fRnCVn31vt9559Qz6S6dqYrM';
+  var gMapsKey = 'AIzaSyDS0mO9a53OQPEB6J4al4DoyH2FlInfx40';
 
   var location = request.body.location.lat + "," + request.body.location.lng;
   var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?";
@@ -63,6 +63,7 @@ app.post("/search", function(request, response) {//this is Justin's testing of g
       //   })
       // }
     // }
+
     response.json(data);
   })
 
