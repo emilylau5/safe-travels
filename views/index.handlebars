@@ -1,8 +1,58 @@
 <div class="container">
-    <div class="jumbotron">
-      <h1>Safe Travels</h1>
-      <h3>Site Description Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, unde suscipit! Repellendus sequi ex corrupti officia, aperiam fugiat eius in, tempore distinctio, blanditiis dicta quam sapiente ipsa at molestias temporibus?</h3>
+  <div class="row">
+  <div class="col-xs-3">
+    <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>Create an Account</strong></h3>
     </div>
-
-    
-<h1>heloo</h1>
+    <div class="panel-body">
+      <form>
+      <div class="form-group">
+        <label for="username-input">Username</label>
+        <input class="form-control" id="username-input" type="text">
+      </div>
+      <div class="form-group">
+        <label for="password-input">Password</label>
+        <input class="form-control" id="password-input" type="password">
+      </div>
+      <div class="form-group">
+       <label for="Confirm-password-input">Confirm-Password</label>
+       <input class="form-control" id="Confirm-password-input" type="password">
+      </div>
+      <div class="form-group">
+        <label for="email-input">Email</label>
+        <input class="form-control" id="email-input" type="text">
+      </div>
+        <button class="btn btn-primary" id="add-user" type="submit">Submit</button>
+      </form>
+    </div>
+    </div>
+  </div>
+    <div class="col-xs-9">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Where Are You Going?</strong></h3>
+        </div>
+        <div class="panel-body">
+          <form>
+          <div class="form-group">
+            <form action="" method="post" name="form_citydetails" id="form_citydetails" enctype="multipart/form-data" onsubmit="return false;">
+              <label for="city-input">Search by City</label>
+              <input class="ff_elem form-control" type="text" name="ff_nm_from[]" value="" id="f_elem_city"/>
+            </form>
+          </div>
+          <div class="form-group">
+            <label for="departure-input">Departure Date</label>
+            <input class="form-control" id="departure-input" type="date">
+          </div>
+          <div class="form-group">
+            <label for="Return-input">Return Date</label>
+            <input class="form-control" id="Return-input" type="date">
+          </div>
+          <button class="btn btn-primary" id="search-btn" type="search">Search</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
