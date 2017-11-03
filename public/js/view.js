@@ -56,17 +56,16 @@ function getcitydetails(fqcn) {
   cityfqcn = fqcn;
  
   if (cityfqcn) {
- 
-      $.getJSON(
-        "http://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn, function (data) {
-          var city = {
-            location: {
-              lat: data.geobyteslatitude, 
-              lng: data.geobyteslongitude
-            },
-            name: data.geobytescity
-          }
-          console.log(city.location);
-      });
+    $.getJSON(
+      "http://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn, function (data) {
+        var city = {
+          location: {
+            lat: data.geobyteslatitude, 
+            lng: data.geobyteslongitude
+          },
+          name: data.geobytescity
+        }
+        console.log(city);
+    });
   }
 }
