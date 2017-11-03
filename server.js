@@ -32,6 +32,3 @@ db.sequelize.sync({ force: true }).then(function() {
 app.get("/", function(req, res) {
   res.render("index");
 });
-
-
-//app.listen(PORT);
