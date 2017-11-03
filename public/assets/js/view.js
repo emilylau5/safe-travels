@@ -1,7 +1,7 @@
 $(document).ready(function() {
   //adding event listeners and attaching functions
   $(document).on("click", "#add-user", addUser);
-
+  $(document).on("click", "#search-btn", searchCity);
 
   // functions
 
@@ -21,6 +21,7 @@ $(document).ready(function() {
   };
 })
 
+//autocomplete city search function
 $(function () 
  {
    $("#f_elem_city").autocomplete({
@@ -48,16 +49,14 @@ $(function ()
    });
    $("#f_elem_city").autocomplete("option", "delay", 100);
   });
-
-function getcitydetails(fqcn) {
- 
-  if (typeof fqcn == "undefined") fqcn = jQuery("#f_elem_city").val();
- 
-  cityfqcn = fqcn;
- 
-  if (cityfqcn) {
-    $.getJSON(
-      "http://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn, function (data) {
+//end autocomplete
+//grab lat and lng from autocomplete
+function searchCity() {
+  function getcitydetails(fqcn) {  
+    if (typeof fqcn == "undefined") fqcn = jQuery("#f_elem_city").val();
+    cityfqcn = fqcn;
+    if (cityfqcn) {
+      $.getJSON("http://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn, function (data) {
         var city = {
           location: {
             lat: data.geobyteslatitude, 
@@ -65,7 +64,8 @@ function getcitydetails(fqcn) {
           },
           name: data.geobytescity
         }
-        console.log(city);
-    });
-  }
-}
+        $.post("/search", city);
+      });
+    } //end if statement
+  } //end get city details
+} //end searchCity
