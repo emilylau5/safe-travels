@@ -1,5 +1,6 @@
 function initMap(centeredOn, hotels, crimes) {
   // console.log(centeredOn);
+  var infowindow = new google.maps.InfoWindow();
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     center: {
@@ -9,30 +10,32 @@ function initMap(centeredOn, hotels, crimes) {
       // lng: -122.408715
     }
   });
-  console.log(map);
-  for(index in hotels) {
+
+  function placeMarker (hotel) {
+    var contentHTML = "<h3>" + hotel.name + "</h3><br>";
+    contentHTML += "<p>Rating: " + hotel.rating + "</p>";
+    contentHTML += "<p>Address: " + hotel.formatted_address + "</p>";
     
     var marker = new google.maps.Marker({
       position: {
-        lat: parseFloat(hotels[index].geometry.location.lat),
-        lng: parseFloat(hotels[index].geometry.location.lng)
+        lat: parseFloat(hotel.geometry.location.lat),
+        lng: parseFloat(hotel.geometry.location.lng)
       },
       map: map,
+      windowContent: contentHTML
       // icon: hotels[index].icon
     });
 
-    var contentHTML = "<h2>" + hotels[index].name + "</h2><br>";
-    contentHTML += "<p>Rating: " + hotels[index].rating + "</p>";
-    contentHTML += "<p>Address: " + hotels[index].formatted_address + "</p>";
-
-    var infowindow = new google.maps.InfoWindow({
-      content: contentHTML,
-
-    });
-
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
+    google.maps.event.addListener(marker, "click", function() {
+      infowindow.close();
+      infowindow.setContent(this.windowContent);
+      infowindow.open(map,marker);
     });
   }
+
+  for (index in hotels) {
+    placeMarker(hotels[index]);
+  }
+    
   console.log("for loop done");
 }

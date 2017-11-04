@@ -51,19 +51,7 @@ app.post("/search", function(request, response) {//this is Justin's testing of g
   queryURL += "&radius=5000"
 
   client.get(queryURL, function(data) {
-    console.log(data.results[0]);
-    // var modData = function(data) {
-      // for(index in data.results) {
-      //   var geoCodeURL = "https://maps.googleapis.com/maps/api/geocode/json?place_id=";
-      //   geoCodeURL += toString(data.results[index].id);
-      //   geoCodeURL += "&key=" + gMapsKey;
-      //   client.get(geoCodeURL, function(response) {
-      //     console.log({geoCodeURL});
-      //     console.log(response);
-      //   })
-      // }
-    // }
-
+    
     response.json(data);
   })
 
