@@ -32,3 +32,39 @@ db.sequelize.sync({ force: true }).then(function() {
 app.get("/", function(req, res) {
   res.render("index");
 });
+
+app.post("/search", function(request, response) {//this is Justin's testing of google APIs
+  console.log(request.body);
+
+  var http = require("http");
+  var Client = require('node-rest-client').Client;
+   
+  var client = new Client();
+
+  var gMapsKey = 'AIzaSyDS0mO9a53OQPEB6J4al4DoyH2FlInfx40';
+
+  var location = request.body.location.lat + "," + request.body.location.lng;
+  var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?";
+  queryURL += "query=hotel&key="
+  queryURL += gMapsKey;
+  queryURL += "&type=lodging&location=" + location;
+  queryURL += "&radius=5000"
+
+  client.get(queryURL, function(data) {
+    console.log(data.results[0]);
+    // var modData = function(data) {
+      // for(index in data.results) {
+      //   var geoCodeURL = "https://maps.googleapis.com/maps/api/geocode/json?place_id=";
+      //   geoCodeURL += toString(data.results[index].id);
+      //   geoCodeURL += "&key=" + gMapsKey;
+      //   client.get(geoCodeURL, function(response) {
+      //     console.log({geoCodeURL});
+      //     console.log(response);
+      //   })
+      // }
+    // }
+
+    response.json(data);
+  })
+
+})
