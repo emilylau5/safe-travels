@@ -23,9 +23,8 @@ var city = {};
 })
 
 //autocomplete city search function
-$(function () 
- {
-   $("#f_elem_city").autocomplete({
+$(function () {
+  $("#f_elem_city").autocomplete({
     source: function (request, response) {
      $.getJSON(
       "http://gd.geobytes.com/AutoCompleteCity?callback=?&q="+request.term,
@@ -49,7 +48,7 @@ $(function ()
     }
    });
    $("#f_elem_city").autocomplete("option", "delay", 100);
-  });
+});
 //end autocomplete
 
 //grab lat and lng from autocomplete
@@ -57,7 +56,7 @@ function searchCity() {
   console.log(city);
   $.post("/search", city, function(data) {
     console.log(data);
-    initMap(city.location, data.results)
+    initMap(city.location, data.hotelsData.results, data.crimeData)
   });
 } //end searchCity
 
