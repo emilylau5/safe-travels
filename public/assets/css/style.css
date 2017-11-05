@@ -18,8 +18,16 @@ html, body {
    background: rgba(200, 54, 54, 0.25); 
 }
 
+#slogan {
+  font-family : Rajdhani, "Great Vibes", cursive;
+}
+
 .panel {
   background : rgba(28, 41, 60, 0.85); 
+}
+
+.modal-content {
+  background : rgba(28, 41, 60, 0.70); 
 }
 
 label, #need-acct {
@@ -29,3 +37,7 @@ label, #need-acct {
 #sign-up {
   font-weight: bold
 } 
+
+#x-close {
+  color : #ffffff;
+}

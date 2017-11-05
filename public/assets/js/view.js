@@ -8,17 +8,22 @@ var city = {};
 
   function addUser(event) {
     event.preventDefault();
-    var pass = $("#password-input").val();
-    var passConfirm = $("#Confirm-password-input").val();
+    var pass = $("#new-password-input").val();
+    var passConfirm = $("#new-password-confirm-input").val();
     if(pass === passConfirm){
       var User = {
-        userName: $("#username-input").val(),
+        firstName : $("#first-name-input").val().trim(), 
+        lastName : $("#last-name-input").val().trim(),
+        email: $("#email-input").val().trim(),
+        userName: $("#new-username-input").val().trim(),
         password: pass,
-        email: $("#email-input").val()
       };
-      $.post("api/users", addUser);
+
+      $.post("api/users", User, function() {
+        window.location.href = "/search";
+      });
     }
-    console.log(User.password)
+    console.log(User);
   };
 })
 

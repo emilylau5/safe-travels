@@ -1,27 +1,37 @@
+//dependencies : require Express and Body Parser
 var express = require("express");
 var bodyParser = require("body-parser");
-
-
-var app = express();
-
-// Set Handlebars.
 var exphbs = require("express-handlebars");
 
+//require our data models for syncing
+var db = require("./models");
+
+//initialize an Express application
+var app = express();
+
+//assign a port for the app
+var PORT = process.env.PORT || 8050;
+
+//set up Handlebars for our app
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
-var PORT = process.env.PORT || 8050;
-
-var db = require("./models");
-
+//Set up Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+//SSet a static directory
 app.use(express.static("public"));
 
+//require html and api routing
+//require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
+//require("./routes/spotcrime-route.js")(app);
+
+
+//Sync our Sequelize models and starting our Express App
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
@@ -33,11 +43,25 @@ db.sequelize.sync({ force: true }).then(function() {
 //   res.render("index");
 // });
 
-app.get("/", function(req, res) {
-  res.render("login_signup");
-});
+//testing of landing page, will modularize this later ** Winfred
+// app.get("/", function(req, res) {
+//   res.render("login_signup");
+// });
 
+// //testing of create new user, will modularize this later ** Winfred
+// app.post("/api/users", function(req, res) {
+//     console.log(req.body);
 
+//   db.User.create({
+//     firstName : req.body.firstName,
+//     lastName : req.body.lastName,
+//     email: req.body.email,
+//     userName: req.body.userName,
+//     password: req.body.password
+//     }).then(function(result){
+//     res.json(result);
+//   });
+// });
 
 app.post("/search", function(request, response) {//this is Justin's testing of google APIs
   console.log(request.body);
@@ -73,4 +97,4 @@ app.post("/search", function(request, response) {//this is Justin's testing of g
     response.json(data);
   })
 
-})
+});
