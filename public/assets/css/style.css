@@ -15,7 +15,9 @@ html, body {
 }
 
 .jumbotron {
-   background: rgba(200, 54, 54, 0.25); 
+  background : rgba(152, 105, 61, 0.20);
+  /*background: rgba(88, 55, 34, 0.35);*/
+  /*background: rgba(200, 54, 54, 0.25); */
 }
 
 #slogan {

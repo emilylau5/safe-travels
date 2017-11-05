@@ -5,6 +5,10 @@ module.exports = function(app) {
   res.render("login_signup");
   });
 
+  app.get("/search", function(req, res) {
+    res.render("index");
+  });
+
   app.post("/api/users", function(req, res) {
     console.log(req.body);
 
