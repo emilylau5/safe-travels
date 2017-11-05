@@ -28,10 +28,16 @@ db.sequelize.sync({ force: true }).then(function() {
   });
 });
 
-//listener for 
+//listener for landing page
+// app.get("/", function(req, res) {
+//   res.render("index");
+// });
+
 app.get("/", function(req, res) {
-  res.render("index");
+  res.render("login_signup");
 });
+
+
 
 app.post("/search", function(request, response) {//this is Justin's testing of google APIs
   console.log(request.body);
