@@ -49,19 +49,19 @@ module.exports = function(app) {
 
          bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
           // Store hash in your password DB.
-          console.log("this the hash" + hash)
-          db.User.create({
-          firstName : req.body.firstName,
-          lastName : req.body.lastName,
-          email: req.body.email,
-          userName: req.body.userName,
-          password: hash
-        }).then(function(result){
-          //just send the same response as in the above if in order for the client-side validation logic to work
-          res.json({
-            outcome : "success"
+            console.log("this the hash" + hash)
+            db.User.create({
+            firstName : req.body.firstName,
+            lastName : req.body.lastName,
+            email: req.body.email,
+            userName: req.body.userName,
+            password: hash
+          }).then(function(result){
+            //just send the same response as in the above if in order for the client-side validation logic to work
+            res.json({
+              outcome : "success"
+            });
           });
-        });
         });
       } 
       //else it means there is data, and need to respond with an object
