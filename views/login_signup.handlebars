@@ -8,13 +8,18 @@
         <h4 class="modal-title">Create an account</h4>
       </div>
       <div class="modal-body">
-        <form role ="form" class="form-horizontal" id="createNew" method="POST" action="/search">
+        <form role ="form" class="form-horizontal" id="create-form">
           <div class="form-group">
             <label for="first-name-input" class="col-sm-4 control-label">First Name</label>
             <div class="col-sm-6">
               <input type="text" class="form-control" id="first-name-input" placeholder="firstname">
             </div>
           </div>
+
+          <div id="error-firstname" class="invisible">
+            <p class="error">This is just a dummy paragraph to even out spacing in this form</p>
+          </div>  
+
           <div class="form-group">
             <label for="last-name-input" class="col-sm-4 control-label">Last Name</label>
             <div class="col-sm-6">
@@ -22,37 +27,58 @@
             </div>
           </div>
 
+          <div id="error-firstname" class="invisible">
+            <p class="error">This is just a dummy paragraph to even out spacing in this form</p>
+          </div> 
+
           <div class="form-group">
             <label for="email-input" class="col-sm-4 control-label">Email</label>
             <div class="col-sm-6">
               <input type="email" class="form-control" id="email-input" placeholder="address@email.com">
             </div>
           </div>
+
+          <div id="error-email" class="error-div invisible">
+            <p class="error text-center">This email is already registered!</p>
+          </div>  
+
           <div class="form-group">
             <label for="new-username-input" class="col-sm-4 control-label">User Name</label>
             <div class="col-sm-6">
               <input type="text" class="form-control" id="new-username-input" placeholder="username">
             </div>
           </div>
+
+          <div id="error-username" class="error-div invisible">
+            <p class="error text-center">This username is no longer available!</p>
+          </div>  
           <div class="form-group">
             <label for="new-password-input" class="col-sm-4 control-label">Password</label>
             <div class="col-sm-6">
               <input type="password" class="form-control" id="new-password-input" placeholder="password">
             </div>
           </div>
+        
+          <div id="error-password-no-match" class="error-div invisible">
+            <p class="error text-center">Please enter matching passwords!</p>
+          </div>  
+
           <div class="form-group">
             <label for="new-password-confirm-input" class="col-sm-4 control-label">Confirm Password</label>
             <div class="col-sm-6">
               <input type="password" class="form-control" id="new-password-confirm-input" placeholder="confirm password">
             </div>
           </div>
-            
+          <div id="error-password-not-available" class="error-div invisible">
+            <p class="error text-center">This password is no longer available!</p>
+          </div>  
+
           <div class="form-group">
             <div class="col-sm-offset-4 col-sm-6">
-              <button type="submit" id="add-user" class="btn btn-default" data-dismiss="modal">Add New Account</button>
-            </div>
+              <button type="submit" id="add-user" class="btn btn-default">Add New Account</button>
+            </div> 
           </div>
-        </form>    
+        </form>   
       </div>
     </div>
   </div>

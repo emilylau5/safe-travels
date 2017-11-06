@@ -1,8 +1,11 @@
 //event listeners for add user and search city buttons
 $(document).ready(function() {
   //adding event listeners and attaching functions
-  $(document).on("click", "#add-user", addUser);
+  //$(document).on("click", "#add-user", addUser);
   $(document).on("click", "#search-btn", searchCity);
+
+  //listener for create new account submit button
+  $("#add-user").on("click", addUser);
 });
 
 //initialize city to be an empty object
@@ -38,46 +41,67 @@ $(function ()
   });
 //end autocomplete
 
+
 function addUser(event) {
   //prevent page from refreshing by default
   event.preventDefault();
 
-  //if both user name & password are not yet taken
-  if (checkNewUserName() && checkNewPassword()) {
-    //check if password matches the confirm password
-    var pass = $("#new-password-input").val();
-    var passConfirm = $("#new-password-confirm-input").val();
-    if(pass === passConfirm){
-      var User = {
-        firstName : $("#first-name-input").val().trim(), 
-        lastName : $("#last-name-input").val().trim(),
-        email: $("#email-input").val().trim(),
-        userName: $("#new-username-input").val().trim(),
-        password: pass,
-      };
+  console.log("add new user listener triggered!");
 
-      $.post("api/users", User, function() {
-        window.location.href = "/search";
-      });
+  //make sure to reset the erro-divs to their invisible state
+  $(".error-div").removeClass("visible").addClass("invisible");
+
+  //grab the new account details provided in the form
+  var firstName = $("#first-name-input").val().trim();
+  var lastName = $("#last-name-input").val().trim();
+  var email = $("#email-input").val().trim();
+  var userName = $("#new-username-input").val().trim();
+  var password = $("#new-password-input").val();
+  var passConfirm = $("#new-password-confirm-input").val();
+
+  //create a new use object
+  var newUser = {
+    firstName : firstName,
+    lastName : lastName,
+    email : email,
+    userName : userName,
+    password : password,
+    passConfirm : passConfirm
+  };
+
+  //send the POST request to the server
+  $.post("api/users", newUser, function(data) {
+    //if the insert is successful
+    if ("outcome" in data) {
+      //route to search page
+      window.location.href = "/search";
+    } //else if there is a mismatch in password entered
+    else if ("passwordIssue" in data) {
+      console.log("there is a mismatch in password");
+      //show the password validation error
+      $("#error-password-no-match").removeClass("invisible").addClass("visible");
+    } //else either the email, username or password already exists in the db
+    else if ("firstName" in data) {
+      console.log("The account info provided already exists");
+      console.log(data);
+      //if the first name already exists in the db
+      if (data.userName === userName) {
+        //show the username validation error
+        $("#error-username").removeClass("invisible").addClass("visible");
+      } //else if the password already exists in the db
+      else if (data.password === password) {
+        //show the password validation error
+        $("#error-password-not-available").removeClass("invisible").addClass("visible");
+      } //else if the email already exists
+      else if (data.email === email) {
+        //show the email validation error
+        $("#error-email").removeClass("invisible").addClass("visible");
+      }
+    } else {
+      console.log("There is something wrong with the info. The account cannot be added");
     }
-    console.log(User);
-  }
-}
-
-function checkNewUserName() {
-  //grab the new user name from the form
-  var newUserName = $("#new-username-input").val().trim();
-
-  //submit a get request to the server to check whether the user name is already taken
-  
-}
-
-function checkNewPassword() {
-  //grab the new password from the form
-  var newPassword = $("#new-password-confirm-input").val();
-
-  //submit a get request to the server to check whether the password is already taken
-
+    
+  });
 }
 
 //grab lat and lng from autocomplete
