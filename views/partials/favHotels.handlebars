@@ -1,9 +1,16 @@
-s<h1>Favorited Hotels</h1>
+<h1>Favorited Hotels</h1>
 
-<ul>
-  {{#if logged-in}}
-    {{#each Hotel}}
-        {{> favorites}}
-    {{/each}}
-  {{/if}}
-</ul>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{user}}'s Favorite Hotels</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+      {{#if logged-in}}
+        {{#each Hotel}}
+          {{> favorites}}
+        {{/each}}
+      {{/if}}
+    </ul>
+  </div>
+</div>

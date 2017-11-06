@@ -1,7 +1,15 @@
 <h1>Past Searches</h1>
 
-<ul>
+{{!-- each search will have lat and lng saved so it works with geobytes --}}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Past Searches</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
     {{#each Search}}
       {{>searches}}
     {{/each}}
-</ul>
+    </ul>
+  </div>
+</div>
