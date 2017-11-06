@@ -95,6 +95,6 @@ app.post("/search", function(request, response) {//this is Justin's testing of g
     // }
 
     response.json(data);
-  })
+  });
 
 });

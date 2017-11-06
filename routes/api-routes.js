@@ -1,8 +1,5 @@
 var db = require("../models");
 
-//need this to use Sequelize operators
-const Op = db.Sequelize.Op;
-
 module.exports = function(app) {
   app.get("/", function(req, res) {
   res.render("login_signup");
@@ -29,12 +26,6 @@ module.exports = function(app) {
           email : req.body.email
         } 
       }
-      // }
-      // [Op.or] : [
-      //   {userName : req.body.UserName}, 
-      //   {password : req.body.password},
-      //   {email : req.body.email}
-      //   ]
     }).then(function(dbUser) {
       //console.log(dbUser);
 
