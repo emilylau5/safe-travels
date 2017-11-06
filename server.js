@@ -32,7 +32,7 @@ require("./routes/api-routes.js")(app);
 
 
 //Sync our Sequelize models and starting our Express App
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
@@ -63,9 +63,9 @@ db.sequelize.sync({ force: true }).then(function() {
 //   });
 // });
 
-app.post("/search", function(request, response) {//this is Justin's testing of google APIs
+app.post("/search/:userid", function(request, response) {//this is Justin's testing of google APIs
   console.log(request.body);
-
+  console.log(request.params);
   var http = require("http");
   var Client = require('node-rest-client').Client;
   var spotcrime = require('spotcrime');
@@ -81,38 +81,35 @@ app.post("/search", function(request, response) {//this is Justin's testing of g
   queryURL += "&type=lodging&location=" + location;
   queryURL += "&radius=5000"
 
-  var hotelsData = {};
-  client.get(queryURL, function(data) {
-    // console.log(data);
-    // for(index in data.results) { //trying to get the website for the places because the search results don't contain it
-    //   var placeURL = "https://maps.googleapis.com/maps/api/place/details/json?";
-    //   placeURL += "key="
-    //   placeURL += gMapsKey;
-    //   placeURL += "&placeid=" + data.results[index].place_id;
-    //   // console.log(placeURL);
-    //   client.get(placeURL, function(data) {
-    //     data.results[index].url = data.result.website;
-    //     console.log(data.results[index]);
-    //   })
-    // }
-    var responseData = {
-      hotelsData: data,
-    }
+  db.Search.create({
+    city: request.body.name,
+    startDate: request.body.start,
+    endDate: request.body.end,
+    queryString: queryURL,
+    UserId: parseInt(request.params.userid)
 
-    var crimeLoc = {
-      lat: parseFloat(request.body.location.lat),
-      lon: parseFloat(request.body.location.lng)
-    }
+  }).then(function(result) {
+    console.log({result});
+    var hotelsData = {};
+    client.get(queryURL, function(data) {
 
-    spotcrime.getCrimes(crimeLoc, .1, function(err, crimes){
-      if(err) {
-        throw err;
-        console.log("error getting crime data");
+      var responseData = {
+        hotelsData: data,
       }
-      console.log(crimes);
-      responseData.crimeData = crimes;
-      response.json(responseData);
-    });
+
+      var crimeLoc = {
+        lat: parseFloat(request.body.location.lat),
+        lon: parseFloat(request.body.location.lng)
+      }
+
+      spotcrime.getCrimes(crimeLoc, .1, function(err, crimes){
+        if(err) {
+          throw err;
+          console.log("error getting crime data");
+        }
+        responseData.crimeData = crimes;
+        response.json(responseData);
+      });
+    })
   })
-  
 })

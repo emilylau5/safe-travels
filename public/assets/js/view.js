@@ -130,8 +130,11 @@ function checkUser() {
 
 //grab lat and lng from autocomplete
 function searchCity() {
+  city.start = $("#departure-input").val();
+  city.end = $("#return-input").val();
+
   console.log(city);
-  $.post("/search", city, function(data) {
+  $.post("/search/1", city, function(data) {
     console.log(data);
     initMap(city.location, data.hotelsData.results, data.crimeData)
   });
