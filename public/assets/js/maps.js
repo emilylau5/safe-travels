@@ -48,7 +48,6 @@ function initMap(centeredOn, hotels, crimes) {
       //   lng: parseFloat(crimes[index].lon)
       // }
       var latLng = new google.maps.LatLng(crimes[index].lat, crimes[index].lon);
-      console.log(latLng);
       var magnitude = crimes[index].type;
       var weight = .5;
       switch (magnitude) {
@@ -84,5 +83,4 @@ function initMap(centeredOn, hotels, crimes) {
     radius: 60
   });
     
-  console.log("for loop done");
 }
