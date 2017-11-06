@@ -40,17 +40,17 @@ module.exports = function(app) {
         console.log("new user added to account!");
         //go ahead and insert new account into database
         db.User.create({
-        firstName : req.body.firstName,
-        lastName : req.body.lastName,
-        email: req.body.email,
-        userName: req.body.userName,
-        password: req.body.password
-      }).then(function(result){
-        //just send the same response as in the above if in order for the client-side validation logic to work
-        res.json({
-          outcome : "success"
+          firstName : req.body.firstName,
+          lastName : req.body.lastName,
+          email: req.body.email,
+          userName: req.body.userName,
+          password: req.body.password
+        }).then(function(result){
+          //just send the same response as in the above if in order for the client-side validation logic to work
+          res.json({
+            outcome : "success"
+          });
         });
-      });
       } 
       //else it means there is data, and need to respond with an object
       else if (dbUser) {
