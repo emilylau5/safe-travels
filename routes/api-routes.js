@@ -1,5 +1,8 @@
 var db = require("../models");
 
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 module.exports = function(app) {
   app.get("/", function(req, res) {
   res.render("login_signup");
@@ -35,22 +38,31 @@ module.exports = function(app) {
         res.json({
           passwordIssue : true});
       }
+
       //else if there is no data in the db
       else if (!dbUser) {
         console.log("new user added to account!");
+        // var hashPassword = passHash(req.body.password);
+        // console.log("this is hash 2" + hashPassword)
         //go ahead and insert new account into database
-        db.User.create({
-        firstName : req.body.firstName,
-        lastName : req.body.lastName,
-        email: req.body.email,
-        userName: req.body.userName,
-        password: req.body.password
-      }).then(function(result){
-        //just send the same response as in the above if in order for the client-side validation logic to work
-        res.json({
-          outcome : "success"
+        var hashPassword;
+
+         bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+          // Store hash in your password DB.
+          console.log("this the hash" + hash)
+          db.User.create({
+          firstName : req.body.firstName,
+          lastName : req.body.lastName,
+          email: req.body.email,
+          userName: req.body.userName,
+          password: hash
+        }).then(function(result){
+          //just send the same response as in the above if in order for the client-side validation logic to work
+          res.json({
+            outcome : "success"
+          });
         });
-      });
+        });
       } 
       //else it means there is data, and need to respond with an object
       else if (dbUser) {
