@@ -6,7 +6,7 @@ var loc = {
   lon: -118.283997
 };
  
-var radius = 1; // this is miles 
+var radius = .1; // this is miles 
  
 spotcrime.getCrimes(loc, radius, function(err, crimes){
  console.log(crimes)

@@ -74,7 +74,7 @@ app.post("/search", function(request, response) {//this is Justin's testing of g
       lon: parseFloat(request.body.location.lng)
     }
 
-    spotcrime.getCrimes(crimeLoc, 1, function(err, crimes){
+    spotcrime.getCrimes(crimeLoc, .1, function(err, crimes){
       if(err) {
         throw err;
         console.log("error getting crime data");

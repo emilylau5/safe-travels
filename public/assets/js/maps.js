@@ -17,7 +17,7 @@ function initMap(centeredOn, hotels, crimes) {
       contentHTML += "<p>Rating: " + hotel.rating + "</p>";
     }
     contentHTML += "<p>Address: " + hotel.formatted_address + "</p>";
-    contentHTML += '<button class="btn btn-primary" data-name="' + hotel.name + '" data-address="' + hotel.formatted_address + '" data-rating="' + hotel.rating + '">Bookmark</button>'
+    contentHTML += '<button class="btn btn-primary bookmark" data-name="' + hotel.name + '" data-address="' + hotel.formatted_address + '" data-rating="' + hotel.rating + '">Bookmark</button>'
     
     var marker = new google.maps.Marker({
       position: {
@@ -50,25 +50,25 @@ function initMap(centeredOn, hotels, crimes) {
       var latLng = new google.maps.LatLng(crimes[index].lat, crimes[index].lon);
       console.log(latLng);
       var magnitude = crimes[index].type;
-      var weight = 1;
+      var weight = .5;
       switch (magnitude) {
         case "Shooting" :
-          weight = 5
+          weight = 2.5
           break;
         case "Burglary" :
-          weight = 4
+           weight = 2
           break;
         case "Assault" :
-          weight = 4
+          weight = 2
           break;
         case "Theft" :
-          weight = 3
+          weight = 1.5
           break;
         case "Robbery" :
-          weight = 3
+          weight = 1.5
           break;
         case "Arrest" :
-          weight = 2
+          weight = 1
           break;
       }
       var weightedLoc = {
@@ -80,7 +80,8 @@ function initMap(centeredOn, hotels, crimes) {
   var heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatmapData,
     dissipating: true,
-    map: map
+    map: map,
+    radius: 60
   });
     
   console.log("for loop done");
