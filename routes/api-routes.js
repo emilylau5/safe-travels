@@ -1,5 +1,8 @@
 var db = require("../models");
 
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 module.exports = function(app) {
   app.get("/", function(req, res) {
   res.render("login_signup");
@@ -49,6 +52,7 @@ module.exports = function(app) {
         res.json({
           passwordIssue : true});
       }
+
       //else if there is no data in the db
       else if (!dbUser) {
         console.log("new user added to account!");
@@ -56,6 +60,10 @@ module.exports = function(app) {
         // console.log("this is hash 2" + hashPassword)
         //go ahead and insert new account into database
         var hashPassword;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
          bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
           // Store hash in your password DB.
           console.log("this the hash" + hash)
