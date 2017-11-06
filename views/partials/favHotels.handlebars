@@ -1,0 +1,9 @@
+s<h1>Favorited Hotels</h1>
+
+<ul>
+  {{#if logged-in}}
+    {{#each Hotel}}
+        {{> favorites}}
+    {{/each}}
+  {{/if}}
+</ul>
