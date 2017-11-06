@@ -38,6 +38,7 @@ app.post("/search", function(request, response) {//this is Justin's testing of g
 
   var http = require("http");
   var Client = require('node-rest-client').Client;
+  var spotcrime = require('spotcrime');
    
   var client = new Client();
 
@@ -50,21 +51,39 @@ app.post("/search", function(request, response) {//this is Justin's testing of g
   queryURL += "&type=lodging&location=" + location;
   queryURL += "&radius=5000"
 
+  var hotelsData = {};
   client.get(queryURL, function(data) {
-    console.log(data.results[0]);
-    // var modData = function(data) {
-      // for(index in data.results) {
-      //   var geoCodeURL = "https://maps.googleapis.com/maps/api/geocode/json?place_id=";
-      //   geoCodeURL += toString(data.results[index].id);
-      //   geoCodeURL += "&key=" + gMapsKey;
-      //   client.get(geoCodeURL, function(response) {
-      //     console.log({geoCodeURL});
-      //     console.log(response);
-      //   })
-      // }
+    // console.log(data);
+    // for(index in data.results) { //trying to get the website for the places because the search results don't contain it
+    //   var placeURL = "https://maps.googleapis.com/maps/api/place/details/json?";
+    //   placeURL += "key="
+    //   placeURL += gMapsKey;
+    //   placeURL += "&placeid=" + data.results[index].place_id;
+    //   // console.log(placeURL);
+    //   client.get(placeURL, function(data) {
+    //     data.results[index].url = data.result.website;
+    //     console.log(data.results[index]);
+    //   })
     // }
+    var responseData = {
+      hotelsData: data,
+    }
 
-    response.json(data);
+    var crimeLoc = {
+      lat: parseFloat(request.body.location.lat),
+      lon: parseFloat(request.body.location.lng)
+    }
+
+    spotcrime.getCrimes(crimeLoc, .1, function(err, crimes){
+      if(err) {
+        throw err;
+        console.log("error getting crime data");
+      }
+      console.log(crimes);
+      responseData.crimeData = crimes;
+      response.json(responseData);
+    });
+
   })
-
+  
 })
