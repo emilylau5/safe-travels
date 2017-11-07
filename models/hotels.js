@@ -35,13 +35,13 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  Hotel.associate = function(models) {
-    Hotel.belongsTo(models.Search, {
-      foreignKey : {
-        allowNull : false
-      }
-    });
-  };
+  // Hotel.associate = function(models) {
+  //   Hotel.belongsTo(models.Search, {
+  //     foreignKey : {
+  //       allowNull : false
+  //     }
+  //   });
+  // };
 
   return Hotel;
 };

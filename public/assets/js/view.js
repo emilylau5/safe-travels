@@ -12,6 +12,9 @@ $(document).ready(function() {
   $("#login-submit").on("click", checkUser);
 });
 
+//avoid naming conflicts
+var Cookies2 = Cookies.noConflict();
+
 //initialize city to be an empty object
 var city = {};
 
@@ -76,6 +79,8 @@ function addUser(event) {
     //if the insert is successful
     if ("outcome" in data) {
       //route to search page
+      // console.log(data);
+      Cookies2.set("UserID", data.user.id);
       window.location.href = "/search";
     } //else if there is a mismatch in password entered
     else if ("passwordIssue" in data) {
@@ -137,9 +142,12 @@ function checkUser() {
 function searchCity() {
   city.start = $("#departure-input").val();
   city.end = $("#return-input").val();
+  console.log(Cookies2.get("UserID"));
+  var route = "/search/" + Cookies2.get("UserID");
 
   console.log(city);
-  $.post("/search/1", city, function(data) {
+  console.log(route);
+  $.post(route, city, function(data) {
     console.log(data);
     initMap(city.location, data.hotelsData.results, data.crimeData)
   });
