@@ -3,4 +3,21 @@ var express = require("express");
 
 var router = express.Router();
 
+router.get("/", function(req, res) {
+  db.Hotel.findAll({}).then(function(dbHotels) {
+    res.send(dbHotels)
+  })//then end
+})//router.get end
+
+router.delete("/:id", function(req, res) {
+  var thisHotelID = req.params.id;
+  db.Hotel.destroy({
+    where: {
+      id: thisHotelID
+    }
+  }).then(function(result) {
+    res.json(result)
+  }) // then end
+}) //router.delete end
+
 module.exports = router;
