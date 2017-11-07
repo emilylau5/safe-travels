@@ -89,17 +89,18 @@
   <div class="col-sm-6">
     <div class="panel panel-info">
       <div class="panel-body">
-        <form role="form" class="form-horizontal" method="GET" action="/search">
+        {{!-- <form role="form" class="form-horizontal" method="GET" action="/search"> --}}
+        <form role="form" class="form-horizontal">  
           <div class="form-group">
             <label for="inputUserName" class="col-sm-4 control-label">User Name</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" id="inputUserName" placeholder="username">
+              <input type="text" class="form-control" id="input-user-name" placeholder="username">
             </div>
           </div>
           <div class="form-group">
             <label for="inputPassword" class="col-sm-4 control-label">Password</label>
             <div class="col-sm-6">
-              <input type="password" class="form-control" id="inputPassword" placeholder="password">
+              <input type="password" class="form-control" id="input-password" placeholder="password">
             </div>
           </div>
           <div class="form-group">
@@ -113,7 +114,7 @@
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-6">
-              <button type="submit" class="btn btn-default">Sign in</button>
+              <button type="submit" class="btn btn-default" id="login-submit">Sign in</button>
               <hr>
               <p id="need-acct">Need an account?<span><a href="#" data-toggle="modal" data-target="#myModal" id="sign-up">&nbsp;&nbsp;&nbsp;SIGN UP</span></p>
             </div>

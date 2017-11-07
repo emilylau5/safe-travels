@@ -1,11 +1,15 @@
 //event listeners for add user and search city buttons
 $(document).ready(function() {
   //adding event listeners and attaching functions
-  //$(document).on("click", "#add-user", addUser);
+
+  //listener for search  
   $(document).on("click", "#search-btn", searchCity);
 
   //listener for create new account submit button
   $("#add-user").on("click", addUser);
+
+  //listener for existing user login
+  $("#login-submit").on("click", checkUser);
 });
 
 //avoid naming conflicts
@@ -42,7 +46,6 @@ $(function () {
    $("#f_elem_city").autocomplete("option", "delay", 100);
 });
 //end autocomplete
-
 
 function addUser(event) {
   //prevent page from refreshing by default
@@ -106,6 +109,33 @@ function addUser(event) {
     }
     
   });
+}
+
+function checkUser() {  
+  //prevent page from refreshing by default
+  event.preventDefault();
+
+  console.log("checking for user in the database");
+
+  //grab the username and password provided in the form
+  var userNameInput = $("#input-user-name").val().trim();
+  var passWordInput = $("#input-password").val();
+
+  console.log('user name : ' + userNameInput);
+  console.log('password : ' + passWordInput);
+
+  var existingUser = {
+    userName : userNameInput,
+    password : passWordInput
+  };
+
+  // send the get request to the server
+  $.get("/api/users", existingUser, function(data) {
+    console.log("I am getting my data back");
+    console.log(data.validation);
+    window.location.href = "/search";
+  });
+
 }
 
 //grab lat and lng from autocomplete
