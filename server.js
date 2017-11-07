@@ -51,7 +51,7 @@ app.use("/search", searchRoutes);
 app.use("/hotels", hotelRoutes);
 
 //Sync our Sequelize models and starting our Express App
-db.sequelize.sync(/*{force: true}*/).then(function() {
+db.sequelize.sync({force: true}).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
