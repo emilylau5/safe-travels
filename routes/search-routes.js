@@ -5,6 +5,7 @@ var router = express.Router();
 
 //this router is on the root "/search"
 router.get("/", function(req, res) {
+
   console.log(req.headers.cookie);
   if(!req.headers.cookie) {
     res.redirect("/");
@@ -16,6 +17,12 @@ router.get("/", function(req, res) {
     // res.json(req.headers.cookie);
     res.render("index");
   }
+ 
+  db.Search.findAll({}).then(function(dbSearches) {
+    res.render("accountManagement.handlebars", {
+      search: dbSearches
+    })//render end
+  })//then end
 });
 
 router.post("/:userid", function(request, response) {//this is Justin's testing of google APIs
