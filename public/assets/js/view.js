@@ -1,5 +1,6 @@
 //event listeners for add user and search city buttons
 $(document).ready(function() {
+
   //adding event listeners and attaching functions
 
   //listener for search  
@@ -12,8 +13,8 @@ $(document).ready(function() {
   $("#login-submit").on("click", checkUser);
 });
 
-//avoid naming conflicts
-var Cookies2 = Cookies.noConflict();
+// //avoid naming conflicts
+// var Cookies2 = Cookies.noConflict();
 
 //initialize city to be an empty object
 var city = {};

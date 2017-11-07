@@ -60,7 +60,15 @@ router.post("/:userid", function(request, response) {//this is Justin's testing 
 })
 
 router.delete("/:searchid", function(request, response) {
+  var thisSearchID = request.params.searchid;
+  db.Search.destroy({
+    where: {
+      id: thisSearchID
+    }
+  }).then(function(result){
+    res.json(result)
+  })// end then
+})//end router.delete
 
-})
 
 module.exports = router;
