@@ -122,8 +122,59 @@ router.post("/:id/hotels", function(req, res) {
 
 //needs to be rerouted and needs to grab user account info from the db **JW
 router.get("/:id/manage", function(req, res) {
+  if(!req.headers.cookie) {
+    res.redirect("/");
+  }
+  else {
+    var cookieString = req.headers.cookie.split("=");
+    var userID = cookieString[1];
+    var user = {}
+    var searches = [];
+    var bookmarks = [];
+    console.log({userID});
+    if(userID === req.params.id) {
+      // res.json(req.headers.cookie);
+      db.User.findOne({
+        where: {
+          id: userID
+        },
+        attributes: ["firstName", "lastName", "userName", "email"]
+      }).then(function(data) {
+        // console.log(data);
+        user = data.dataValues;
+        console.log(user);
+        db.Search.all(
+        {
+          where: {
+            UserId: userID
+          }
+        }).then(function(searchData) {
+          // console.log(searchData);
+          for (var index in searchData) {
+            searches.push(searchData[index].dataValues);
+          }
+          console.log(searches);
 
-  res.render("accountManagement");
+          db.Hotel.all({
+            where: {
+              UserId: userID
+            },
+            attributes: ["name", "rating", "city"]
+          }).then(function(bookmarkData) {
+            // console.log(bookmarkData);
+            for (var index in bookmarkData) {
+              bookmarks.push(bookmarkData[index].dataValues);
+            }
+            console.log(bookmarks);
+          })
+        })
+      })
+      res.render("accountManagement");
+    }
+    else {
+      res.redirect("/");
+    }
+  }
 });
 
 module.exports = router;

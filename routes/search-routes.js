@@ -5,7 +5,19 @@ var router = express.Router();
 
 //this router is on the root "/search"
 router.get("/", function(req, res) {
-  res.render("index");
+
+  console.log(req.headers.cookie);
+  if(!req.headers.cookie) {
+    res.redirect("/");
+  }
+  else {
+    var cookieString = req.headers.cookie.split("=");
+    var userID = cookieString[1];
+    console.log({userID});
+    // res.json(req.headers.cookie);
+    res.render("index");
+  }
+ 
   db.Search.findAll({}).then(function(dbSearches) {
     res.render("accountManagement.handlebars", {
       search: dbSearches
@@ -36,6 +48,7 @@ router.post("/:userid", function(request, response) {//this is Justin's testing 
     startDate: request.body.start,
     endDate: request.body.end,
     queryString: queryURL,
+    location: location,
     UserId: parseInt(request.params.userid)
 
   }).then(function(result) {

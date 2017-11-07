@@ -11,7 +11,7 @@ $(document).ready(function() {
 var hotels = [];
 
 // run this function on page load of /hotels getHotels();
-getHotels();
+// getHotels();
 
 function getHotels() {
   $.get("/hotels", function(data) {
