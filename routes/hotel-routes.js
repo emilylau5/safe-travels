@@ -5,7 +5,9 @@ var router = express.Router();
 
 router.get("/", function(req, res) {
   db.Hotel.findAll({}).then(function(dbHotels) {
-    res.send(dbHotels)
+    res.render("accountManagement.handlebars", {
+      hotels: dbHotels
+    })
   })//then end
 })//router.get end
 
