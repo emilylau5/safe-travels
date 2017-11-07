@@ -72,5 +72,7 @@ module.exports = function(app) {
       }
     }); //end of findOne method
   }); //end of app.post("/api/users")
-
+app.get("/account", function(req, res) {
+    res.render("accountManagement");
+  });
 }; //end of module export
