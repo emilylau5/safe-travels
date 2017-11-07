@@ -9,9 +9,10 @@ $(function() {
     }
     console.log(hotelSave);
 
-    var route = "/users/" + 1 + "hotels";
+    var route = "/users/" + Cookies2.get("UserID") + "/hotels";
     $.post(route, hotelSave, function(response) {
       console.log("posted");
+      console.log(response);
     })
 
   });

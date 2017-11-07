@@ -59,7 +59,8 @@ module.exports = function(app) {
         }).then(function(result){
           //just send the same response as in the above if in order for the client-side validation logic to work
           res.json({
-            outcome : "success"
+            outcome : "success",
+            user: result
           });
         });
         });
@@ -72,5 +73,18 @@ module.exports = function(app) {
       }
     }); //end of findOne method
   }); //end of app.post("/api/users")
+
+  app.post("/users/:id/hotels", function(req, res) {
+    console.log(req.body);
+    db.Hotel.create({
+      name: req.body.name,
+      rating: req.body.rating,
+      city: req.body.city,
+      UserId: req.params.id,
+    }).then(function(result) {
+      res.json(result);
+    })
+
+  })
 
 }; //end of module export
