@@ -116,6 +116,9 @@ function checkUser() {
   var userNameInput = $("#input-user-name").val().trim();
   var passWordInput = $("#input-password").val();
 
+  console.log('user name : ' + userNameInput);
+  console.log('password : ' + passWordInput);
+
   var existingUser = {
     userName : userNameInput,
     password : passWordInput
@@ -123,7 +126,9 @@ function checkUser() {
 
   // send the get request to the server
   $.get("/api/users", existingUser, function(data) {
-    console.log(data);
+    console.log("I am getting my data back");
+    console.log(data.validation);
+    window.location.href = "/search";
   });
 
 }

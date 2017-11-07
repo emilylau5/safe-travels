@@ -14,17 +14,34 @@ module.exports = function(app) {
 
   app.get("/api/users", function(req, res) {
     //run a query against the database for the username or password provided
-    db.User.findOne({
-      where : {
-        $or : {
-          userName : req.body.userName,
-          password : req.body.password
+    console.log("logging the request data");
+    console.log(req.query);
+
+    bcrypt.hash(req.query.password, saltRounds, function(err, hash) {
+         
+      db.User.findOne({
+        where : {
+          $or : {
+            userName : req.query.userName
+            // password : hash
+          }
         }
-      }
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
-  });
+      }).then(function(dbUser) {
+        console.log(dbUser);
+        console.log(hash);
+        if (req.query.userName === dbUser.userName) {
+          res.json({
+            validation : "pass"
+          }); //end of res.json
+        } //end of if
+        else {
+          res.json({
+            validation : "fail"
+          }); //end of res.json
+        } //end of else
+      }); //end of then
+    }); //end of bcrypt
+  }); //end of get
 
   app.post("/api/users", function(req, res) {
     console.log(req.body);
@@ -39,7 +56,7 @@ module.exports = function(app) {
       where : {
         $or : {
           userName : req.body.UserName,
-          password : req.body.password,
+          // password : req.body.password,
           email : req.body.email
         } 
       }
@@ -59,11 +76,7 @@ module.exports = function(app) {
         // var hashPassword = passHash(req.body.password);
         // console.log("this is hash 2" + hashPassword)
         //go ahead and insert new account into database
-        var hashPassword;
-<<<<<<< HEAD
-=======
-
->>>>>>> master
+      
          bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
           // Store hash in your password DB.
           console.log("this the hash" + hash)
