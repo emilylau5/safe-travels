@@ -23,6 +23,13 @@ module.exports = function(sequelize, DataTypes) {
         isDate: true
       }
     },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
     queryString: {
       type: DataTypes.STRING,
       allowNull: false,

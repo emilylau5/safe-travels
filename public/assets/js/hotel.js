@@ -2,7 +2,7 @@
 var hotels = [];
 
 // run this function on page load of /hotels getHotels();
-getHotels();
+// getHotels();
 
 function rowPerHotel() {
   var newDiv = $("<div>")

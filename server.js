@@ -34,7 +34,17 @@ var searchRoutes = require("./routes/search-routes.js");
 var hotelRoutes = require("./routes/hotel-routes.js");
 
 app.get("/", function(req, res) {
-  res.render("login_signup");
+  console.log(req.headers.cookie);
+  if(!req.headers.cookie) {
+    res.render("login_signup");
+  }
+  else {
+    var cookieString = req.headers.cookie.split("=");
+    var userID = cookieString[1];
+    console.log({userID});
+    // res.json(req.headers.cookie);
+    res.render("index");
+  }
 });
 app.use("/users", userRoutes);
 app.use("/search", searchRoutes);
