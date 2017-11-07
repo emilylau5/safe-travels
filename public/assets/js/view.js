@@ -9,7 +9,7 @@ $(document).ready(function() {
   $("#add-user").on("click", addUser);
 
   //listener for existing user login
-  $("#login-submit").on("click", checkUser);
+  // $("#login-submit").on("click", checkUser);
 });
 
 //avoid naming conflicts
@@ -75,7 +75,7 @@ function addUser(event) {
   };
 
   //send the POST request to the server
-  $.post("api/users", newUser, function(data) {
+  $.post("/users", newUser, function(data) {
     //if the insert is successful
     if ("outcome" in data) {
       //route to search page
@@ -111,7 +111,7 @@ function addUser(event) {
   });
 }
 
-function checkUser() {  
+/*function checkUser() {  
   //prevent page from refreshing by default
   event.preventDefault();
 
@@ -130,13 +130,12 @@ function checkUser() {
   };
 
   // send the get request to the server
-  $.get("/api/users", existingUser, function(data) {
+  $.get("/users", existingUser, function(data) { //this needs to be routed differently **JW
     console.log("I am getting my data back");
     console.log(data.validation);
     window.location.href = "/search";
   });
-
-}
+}*/
 
 //grab lat and lng from autocomplete
 function searchCity() {

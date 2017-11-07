@@ -56,7 +56,6 @@ module.exports = function(app) {
       where : {
         $or : {
           userName : req.body.UserName,
-          // password : req.body.password,
           email : req.body.email
         } 
       }
@@ -77,20 +76,21 @@ module.exports = function(app) {
         // console.log("this is hash 2" + hashPassword)
         //go ahead and insert new account into database
       
-         bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+        bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
           // Store hash in your password DB.
           console.log("this the hash" + hash)
           db.User.create({
-          firstName : req.body.firstName,
-          lastName : req.body.lastName,
-          email: req.body.email,
-          userName: req.body.userName,
-          password: hash
-        }).then(function(result){
-          //just send the same response as in the above if in order for the client-side validation logic to work
-          res.json({
-            outcome : "success",
-            user: result
+            firstName : req.body.firstName,
+            lastName : req.body.lastName,
+            email: req.body.email,
+            userName: req.body.userName,
+            password: hash
+          }).then(function(result){
+            //just send the same response as in the above if in order for the client-side validation logic to work
+            res.json({
+              outcome : "success",
+              user: result
+            });
           });
         });
       } 
@@ -105,17 +105,30 @@ module.exports = function(app) {
 
   app.post("/users/:id/hotels", function(req, res) {
     console.log(req.body);
-    db.Hotel.create({
-      name: req.body.name,
-      rating: req.body.rating,
-      city: req.body.city,
-      UserId: req.params.id,
-    }).then(function(result) {
-      res.json(result);
-    })
+    if(req.body.rating) {
+      db.Hotel.create({
+        name: req.body.name,
+        rating: req.body.rating,
+        city: req.body.city,
+        UserId: req.params.id,
+      }).then(function(result) {
+        res.json(result);
+      })
+    }
+    else {
+      db.Hotel.create({
+        name: req.body.name,
+        city: req.body.city,
+        UserId: req.params.id,
+      }).then(function(result) {
+        res.json(result);
+      })
+    }
   })
 
-app.get("/account", function(req, res) {
+  //needs to be rerouted and needs to grab user account info from the db **JW
+  app.get("/users/:id/manage", function(req, res) {
+
     res.render("accountManagement");
   });
 

@@ -2,6 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
+var methodOverride = require("method-override");
 
 //require our data models for syncing
 var db = require("./models");
@@ -22,14 +23,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+//telling methodOverride to check if there's an overriding method to our requests
+app.use(methodOverride('_method'));
+
 //SSet a static directory
 app.use(express.static("public"));
 
-//require html and api routing
-//require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
-//require("./routes/spotcrime-route.js")(app);
+// //require html and api routing
+// //require("./routes/html-routes.js")(app);
+// require("./routes/api-routes.js")(app);
 
+var userRoutes = require("./routes/user-routes.js");
+var searchRoutes = require("./routes/search-routes.js");
+var hotelRoutes = require("./routes/hotel-routes.js");
+
+app.get("/", function(req, res) {
+  res.render("login_signup");
+});
+app.use("/users", userRoutes);
+app.use("/search", searchRoutes);
+app.use("/hotels", hotelRoutes);
 
 //Sync our Sequelize models and starting our Express App
 db.sequelize.sync(/*{force: true}*/).then(function() {
@@ -37,6 +50,8 @@ db.sequelize.sync(/*{force: true}*/).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+
 
 //listener for landing page
 // app.get("/", function(req, res) {
@@ -63,7 +78,7 @@ db.sequelize.sync(/*{force: true}*/).then(function() {
 //   });
 // });
 
-app.post("/search/:userid", function(request, response) {//this is Justin's testing of google APIs
+/*app.post("/search/:userid", function(request, response) {//this is Justin's testing of google APIs
   console.log(request.body);
   console.log(request.params);
   var http = require("http");
@@ -112,4 +127,4 @@ app.post("/search/:userid", function(request, response) {//this is Justin's test
       });
     })
   })
-})
+})*/

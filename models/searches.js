@@ -39,9 +39,9 @@ module.exports = function(sequelize, DataTypes) {
   //   });
   // };  
 
-    Search.associate = function(models) {
-      Search.belongsTo(models.User, {
-        foreignKey : {
+  Search.associate = function(models) {
+    Search.belongsTo(models.User, {
+      foreignKey : {
         allowNull : false
       }
     });  

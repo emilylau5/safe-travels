@@ -4,8 +4,10 @@ $(function() {
     console.log($(this));
     var hotelSave = {
       name: $(this).data("name"),
-      rating: $(this).data("rating"),
       city: city.name,
+    }
+    if($(this).data("rating")!== "undefined") {
+      hotelSave.rating = $(this).data("rating");
     }
     console.log(hotelSave);
 
