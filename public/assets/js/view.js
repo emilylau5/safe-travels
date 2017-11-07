@@ -9,7 +9,7 @@ $(document).ready(function() {
   $("#add-user").on("click", addUser);
 
   //listener for existing user login
-  // $("#login-submit").on("click", checkUser);
+  $("#login-submit").on("click", checkUser);
 });
 
 //avoid naming conflicts
@@ -111,7 +111,7 @@ function addUser(event) {
   });
 }
 
-/*function checkUser() {  
+function checkUser() {  
   //prevent page from refreshing by default
   event.preventDefault();
 
@@ -130,12 +130,13 @@ function addUser(event) {
   };
 
   // send the get request to the server
-  $.get("/users", existingUser, function(data) { //this needs to be routed differently **JW
+  $.post("/users/login", existingUser, function(data) { //this needs to be routed differently **JW
     console.log("I am getting my data back");
     console.log(data.validation);
+    Cookies2.set("UserID", data.userId);
     window.location.href = "/search";
   });
-}*/
+}
 
 //grab lat and lng from autocomplete
 function searchCity() {
