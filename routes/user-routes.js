@@ -166,10 +166,16 @@ router.get("/:id/manage", function(req, res) {
               bookmarks.push(bookmarkData[index].dataValues);
             }
             console.log(bookmarks);
+            var data = {
+              user : user,
+              searches: searches,
+              bookmarks: bookmarks
+            }
+            res.render("accountManagement", data);
           })
         })
       })
-      res.render("accountManagement");
+      
     }
     else {
       res.redirect("/");

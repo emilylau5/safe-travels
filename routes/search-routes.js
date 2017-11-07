@@ -25,6 +25,8 @@ router.get("/", function(req, res) {
   })//then end
 });
 
+// router.get("/:searchid")
+
 router.post("/:userid", function(request, response) {//this is Justin's testing of google APIs
   console.log(request.body);
   console.log(request.params);
