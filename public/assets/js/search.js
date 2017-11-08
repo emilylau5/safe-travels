@@ -24,6 +24,12 @@ function deleteSearches(btnid) {
 
   $.post(queryURL, function(response) {
     // getSearches();
-    
+
   });
 }//end deleteSearch
+
+function reSearch(id) {
+  $.get("/search/" + id, function(data) {
+    initMap(data.location, data.hotelsData.results, data.crimeData)
+  })
+}
