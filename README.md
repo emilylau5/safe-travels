@@ -18,11 +18,11 @@ Our team's motivation was to create an app that's unique, useful and in a way ch
 ### Back End Tech
 
 
-Comprehensive README:
+<!-- Comprehensive README:
 Synopsis
 At the top of the file there should be a short introduction and/ or overview that explains what the project is.
 Motivation
 A short description of the motivation behind the creation and maintenance of the project. This should explain why the project exists.
 Code Example
 Listing of Technologies Used
-Show what the APP does as concisely as possible: Screen Shots of relevant code, gif of the working application
+Show what the APP does as concisely as possible: Screen Shots of relevant code, gif of the working application -->
