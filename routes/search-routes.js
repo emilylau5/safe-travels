@@ -1,5 +1,10 @@
 var db = require("../models");
 var express = require("express");
+var http = require("http");
+var Client = require('node-rest-client').Client;
+var spotcrime = require('spotcrime');
+ 
+var client = new Client();
 
 var router = express.Router();
 
@@ -14,30 +19,67 @@ router.get("/", function(req, res) {
     var cookieString = req.headers.cookie.split("=");
     var userID = cookieString[1];
     console.log({userID});
-    // res.json(req.headers.cookie);
-    res.render("index");
+    db.Search.all({
+      where: {
+        UserId : userID
+      },
+      attributes:["id", "city", "startDate", "endDate"]
+    }).then(function(data) {
+      if(data.length) {
+        console.log(data);
+        var searchData = [];
+        for (var index in data) {
+          searchData.push(data[index].dataValues);
+        }
+        var thing = {
+          search: searchData
+        }
+        // res.json(req.headers.cookie);
+        res.render("index", thing);
+      }
+      else {
+        res.render("index");
+      }
+    })
   } 
 });
 
-// router.get("all", function(req, res) {
-//   db.Search.findAll({}).then(function(dbSearches) {
-//     res.render("accountManagement.handlebars", {
-//       search: dbSearches
-//     })//render end
-//   })//then end
-// })
+router.get("/:id", function(req, res) {
+  db.Search.findById(req.params.id).then(function(data) {
+    console.log(data.location);
+    var location = data.location.split(",");
+    var queryURL = data.queryString;
+    var hotelsData = {};
+    client.get(queryURL, function(data) {
+      var responseData = {
+        hotelsData: data,
+      }
 
-// router.get("/:searchid")
+      var crimeLoc = {
+        lat: parseFloat(location[0]),
+        lon: parseFloat(location[1])
+      }
+
+      spotcrime.getCrimes(crimeLoc, .1, function(err, crimes){
+        if(err) {
+          throw err;
+          console.log("error getting crime data");
+        }
+        responseData.crimeData = crimes;
+        responseData.location = {
+          lat: crimeLoc.lat,
+          lng: crimeLoc.lon
+        }
+        res.json(responseData);
+      });
+    })
+  })
+})
 
 router.post("/:userid", function(request, response) {//this is Justin's testing of google APIs
   console.log(request.body);
   console.log(request.params);
-  var http = require("http");
-  var Client = require('node-rest-client').Client;
-  var spotcrime = require('spotcrime');
-   
-  var client = new Client();
-
+  
   var gMapsKey = 'AIzaSyDS0mO9a53OQPEB6J4al4DoyH2FlInfx40';
 
   var location = request.body.location.lat + "," + request.body.location.lng;
@@ -56,7 +98,7 @@ router.post("/:userid", function(request, response) {//this is Justin's testing 
     UserId: parseInt(request.params.userid)
 
   }).then(function(result) {
-    console.log({result});
+    // console.log({result});
     var hotelsData = {};
     client.get(queryURL, function(data) {
 
