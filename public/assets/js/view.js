@@ -116,6 +116,9 @@ function checkUser() {
   //prevent page from refreshing by default
   event.preventDefault();
 
+  //make sure to reset the error-divs to their invisible state
+  $(".error-div-signup").removeClass("visible").addClass("invisible");
+
   console.log("checking for user in the database");
 
   //grab the username and password provided in the form
@@ -134,8 +137,20 @@ function checkUser() {
   $.post("/users/login", existingUser, function(data) { //this needs to be routed differently **JW
     console.log("I am getting my data back");
     console.log(data.validation);
-    Cookies2.set("UserID", data.userId);
-    window.location.href = "/search";
+    if(data.userId) {
+      Cookies2.set("UserID", data.userId);
+      window.location.href = "/search";
+    }
+    else {
+      //else if there is no data returned (null), this means that the user name does not exist in db
+      if (data.validation === "user name does not exist") {
+        $("#error-username-not-exist").removeClass("invisible").addClass("visible");
+      }
+      //else if there is an issue with the provided password
+      else if (data.validation === "passwords DO NOT match!") {
+        $("#error-password-incorrect").removeClass("invisible").addClass("visible")
+      }
+    }
   });
 }
 

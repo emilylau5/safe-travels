@@ -17,6 +17,7 @@ router.post("/login", function(req, res) {
       userName : req.body.userName
     }
   }).then(function(dbUser) {
+    
     //if the user doesnt exist in the db
     if (!dbUser) {
       res.json({
@@ -26,9 +27,10 @@ router.post("/login", function(req, res) {
     //else check if the password matches db
     else {
       bcrypt.compare(req.body.password, dbUser.password, function(error, response) {
-        console.log({dbUser});
+        
         console.log(dbUser.dataValues.id);
         if (response) {
+          
           res.json({
             validation : "user name and passwords match!",
             userId: dbUser.dataValues.id,
