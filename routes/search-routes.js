@@ -18,11 +18,11 @@ router.get("/", function(req, res) {
     res.render("index");
   }
  
-  db.Search.findAll({}).then(function(dbSearches) {
-    res.render("accountManagement.handlebars", {
-      search: dbSearches
-    })//render end
-  })//then end
+  // db.Search.findAll({}).then(function(dbSearches) {
+  //   res.render("accountManagement.handlebars", {
+  //     search: dbSearches
+  //   })//render end
+  // })//then end
 });
 
 router.post("/:userid", function(request, response) {//this is Justin's testing of google APIs
