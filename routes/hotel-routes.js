@@ -18,7 +18,7 @@ router.delete("/:id", function(req, res) {
       id: thisHotelID
     }
   }).then(function(result) {
-    res.json(result)
+    response.redirect("/users/manage/");
   }) // then end
 }) //router.delete end
 

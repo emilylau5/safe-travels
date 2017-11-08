@@ -16,14 +16,16 @@ router.get("/", function(req, res) {
     console.log({userID});
     // res.json(req.headers.cookie);
     res.render("index");
-  }
- 
-  db.Search.findAll({}).then(function(dbSearches) {
-    res.render("accountManagement.handlebars", {
-      search: dbSearches
-    })//render end
-  })//then end
+  } 
 });
+
+// router.get("all", function(req, res) {
+//   db.Search.findAll({}).then(function(dbSearches) {
+//     res.render("accountManagement.handlebars", {
+//       search: dbSearches
+//     })//render end
+//   })//then end
+// })
 
 // router.get("/:searchid")
 
@@ -86,7 +88,7 @@ router.delete("/:searchid", function(request, response) {
       id: thisSearchID
     }
   }).then(function(result){
-    res.json(result)
+    response.redirect("/users/manage/");
   })// end then
 })//end router.delete
 

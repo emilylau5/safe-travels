@@ -5,39 +5,42 @@
 
 <div class="container">
   <div class="panel panel-default">
-    <div class="panel-heading">Account Management</div>
-      <ul class="list-group">
-        <li class="list-group-item">Username: {{userName}}</li>
-        <li class="list-group-item">Email: {{email}}</li>
-      </ul>
-    </div>
+    <div class="panel-heading">Account Management<button class="btn btn-danger">Sign Out</button></div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">Username: {{user.userName}}</li>
+          <li class="list-group-item">Email: {{user.email}}</li>
+        </ul>
+      </div>
   </div>
   <div class="panel panel-default">
     <div class="panel-heading">Saved Hotels</div>
-      <ul class="list-group">
-      {{#each hotels}}
-        <li class="list-group-item">Hotel Name: {{name}}</li>
-        <li class="list-group-item">Rating: {{rating}}</li>
-        <li class="list-group-item">City: {{city}}</li>
-        <button class='delete-hotel btn btn-default' value={{id}}>x</button>
-      {{/each}}    
-      </ul>
+    <div class="panel-body">
+      {{#each bookmarks}}
+        <ul class="list-group">
+          <li class="list-group-item"><button class='delete-hotel btn btn-default' value={{id}}>x</button>&nbsp&nbsp&nbspHotel: {{name}}</li>
+          <li class="list-group-item">Rating: {{rating}}</li>
+          <li class="list-group-item">City: {{city}}</li>
+        </ul>
+      {{/each}}
     </div>
   </div> 
   <div class="panel panel-default">
     <div class="panel-heading">Saved Searches</div>
-      <ul class="list-group">
-        {{#each search}}
-        <li class="list-group-item">Searched City: {{city}}</li>
-        <li class="list-group-item">Start Date: {{startDate}}</li>
-        <li class="list-group-item">End Date: {{endDate}}</li>
-        <button class='delete-search btn btn-default' value={{id}}>x</button>
-        {{/each}}
-      </ul>
+    <div class="panel-body">
+      {{#each searches}}
+        <ul class="list-group">
+          <li class="list-group-item"><button class='delete-search btn btn-default' value={{id}}>x</button>&nbsp&nbsp&nbspCity: {{city}} </li>
+          <li class="list-group-item">Start Date: {{startDate}}&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp End Date: {{endDate}}</li>
+          {{!-- <li class="list-group-item">End Date: {{endDate}}</li> --}}
+          {{!-- <button class='delete-search btn btn-default' value={{id}}>x</button> --}}
+        </ul>
+      {{/each}}
     </div>
   </div> 
 </div>
 
 
 <script src="../../assets/js/hotel.js" type="text/javascript"></script>
+<script src="../../assets/js/search.js" type="text/javascript"></script>
 <script src="../../assets/js/view.js" type="text/javascript"></script>
