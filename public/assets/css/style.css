@@ -97,4 +97,104 @@ td, th {
 
 a:hover {
   cursor : grab;
+=======
+#map {
+  height: 600px;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: url('/assets/images/cute_girl_with_dog_edited.jpeg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /*background-blend-mode: overlay;*/
+}
+
+.jumbotron {
+  background : rgba(179,93,76, 0.20);
+  /*background : rgba(198, 164, 79, 0.30);*/
+  /*background : rgba(152, 105, 61, 0.20);*/
+  /*background: rgba(88, 55, 34, 0.35);*/
+  /*background: rgba(200, 54, 54, 0.25); */
+}
+
+#slogan {
+  font-family : Rajdhani, "Great Vibes", cursive;
+}
+
+.panel {
+  background : rgba(28, 41, 60, 0.85); 
+}
+
+.modal-content {
+  background : rgba(28, 41, 60, 0.70); 
+}
+
+label, #need-acct, .modal-title {
+  color : white;
+}
+
+.form-inline {
+  background : rgba(28, 41, 60, 0.75); 
+  padding : 5px 5px 5px 10px;
+}
+
+.form-inline .form-group {
+  margin-right : 15px;
+}
+
+#departure-input, #return-input {
+  padding : 0px;
+}
+
+#search-btn {
+  margin-left : 15px;
+}
+
+#sign-up {
+  font-weight: bold
+} 
+
+#x-close {
+  color : #ffffff;
+}
+
+hr {
+  border : 1px solid #ccc;
+}
+
+
+p.error {
+  color : yellow;
+}
+
+.inline {
+  margin : 5px 0px;
+}
+
+.panel > .panel-heading {
+  background-color : gray;
+  color : white;
+}
+
+caption {
+  color : white;
+  font-weight : bold;
+}
+
+th {
+  width : 38%;
+  text-decoration : underline;
+}
+
+td, th {
+  color : white;
+}
+
+a:hover {
+  cursor : grab;
 }

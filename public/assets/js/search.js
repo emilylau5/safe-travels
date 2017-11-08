@@ -6,6 +6,13 @@ $(document).ready(function() {
     console.log(id)
     deleteSearches(id);
   })
+
+  $("#past").on("click", "a", function(event) {
+    console.log("search clicked!");
+    // event.preventDefault();
+    var searchID = $(this).data("search-id");
+    reSearch(searchID);
+  })
 });
 
 var search = [];
@@ -30,6 +37,12 @@ function deleteSearches(btnid) {
 
 function reSearch(id) {
   $.get("/search/" + id, function(data) {
-    initMap(data.location, data.hotelsData.results, data.crimeData)
+    console.log(data);
+    initMap(data.location, data.hotelsData.results, data.crimeData);
   })
+}
+
+function logout() {
+  Cookies2.remove("UserID");
+  window.location.reload();
 }
