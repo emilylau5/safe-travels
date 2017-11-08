@@ -5,8 +5,8 @@ $(document).ready(function() {
     var id = $(this).val()
     console.log(id)
     deleteHotel(id);
-  })
-}
+  });
+});
 
 var hotels = [];
 

@@ -15,7 +15,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">Saved Hotels</div>
       <ul class="list-group">
-      {{#each hotels}}
+      {{#each bookmarks}}
         <li class="list-group-item">Hotel Name: {{name}}</li>
         <li class="list-group-item">Rating: {{rating}}</li>
         <li class="list-group-item">City: {{city}}</li>
@@ -27,7 +27,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">Saved Searches</div>
       <ul class="list-group">
-        {{#each search}}
+        {{#each searches}}
         <li class="list-group-item">Searched City: {{city}}</li>
         <li class="list-group-item">Start Date: {{startDate}}</li>
         <li class="list-group-item">End Date: {{endDate}}</li>
