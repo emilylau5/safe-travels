@@ -1,12 +1,20 @@
 //event listeners for add user and search city buttons
 $(document).ready(function() {
+
   //adding event listeners and attaching functions
-  //$(document).on("click", "#add-user", addUser);
+
+  //listener for search  
   $(document).on("click", "#search-btn", searchCity);
 
   //listener for create new account submit button
   $("#add-user").on("click", addUser);
+
+  //listener for existing user login
+  $("#login-submit").on("click", checkUser);
 });
+
+// //avoid naming conflicts
+// var Cookies2 = Cookies.noConflict();
 
 //initialize city to be an empty object
 var city = {};
@@ -40,7 +48,6 @@ $(function () {
 });
 //end autocomplete
 
-
 function addUser(event) {
   //prevent page from refreshing by default
   event.preventDefault();
@@ -69,10 +76,12 @@ function addUser(event) {
   };
 
   //send the POST request to the server
-  $.post("api/users", newUser, function(data) {
+  $.post("/users", newUser, function(data) {
     //if the insert is successful
     if ("outcome" in data) {
       //route to search page
+      // console.log(data);
+      Cookies2.set("UserID", data.user.id);
       window.location.href = "/search";
     } //else if there is a mismatch in password entered
     else if ("passwordIssue" in data) {
@@ -103,13 +112,43 @@ function addUser(event) {
   });
 }
 
+function checkUser() {  
+  //prevent page from refreshing by default
+  event.preventDefault();
+
+  console.log("checking for user in the database");
+
+  //grab the username and password provided in the form
+  var userNameInput = $("#input-user-name").val().trim();
+  var passWordInput = $("#input-password").val();
+
+  console.log('user name : ' + userNameInput);
+  console.log('password : ' + passWordInput);
+
+  var existingUser = {
+    userName : userNameInput,
+    password : passWordInput
+  };
+
+  // send the get request to the server
+  $.post("/users/login", existingUser, function(data) { //this needs to be routed differently **JW
+    console.log("I am getting my data back");
+    console.log(data.validation);
+    Cookies2.set("UserID", data.userId);
+    window.location.href = "/search";
+  });
+}
+
 //grab lat and lng from autocomplete
 function searchCity() {
   city.start = $("#departure-input").val();
   city.end = $("#return-input").val();
+  console.log(Cookies2.get("UserID"));
+  var route = "/search/" + Cookies2.get("UserID");
 
   console.log(city);
-  $.post("/search/1", city, function(data) {
+  console.log(route);
+  $.post(route, city, function(data) {
     console.log(data);
     initMap(city.location, data.hotelsData.results, data.crimeData)
   });

@@ -4,14 +4,17 @@ $(function() {
     console.log($(this));
     var hotelSave = {
       name: $(this).data("name"),
-      rating: $(this).data("rating"),
       city: city.name,
+    }
+    if($(this).data("rating")!== "undefined") {
+      hotelSave.rating = $(this).data("rating");
     }
     console.log(hotelSave);
 
-    var route = "/users/" + 1 + "hotels";
+    var route = "/users/" + Cookies2.get("UserID") + "/hotels";
     $.post(route, hotelSave, function(response) {
       console.log("posted");
+      console.log(response);
     })
 
   });

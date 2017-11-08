@@ -23,6 +23,13 @@ module.exports = function(sequelize, DataTypes) {
         isDate: true
       }
     },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
     queryString: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,15 +40,15 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   //associate search with hotels
-  Search.associate = function(models) {
-    Search.hasMany(models.Hotel, {
-      onDelete : "cascade"
-    });
-  };  
+  // Search.associate = function(models) {
+  //   Search.hasMany(models.Hotel, {
+  //     onDelete : "cascade"
+  //   });
+  // };  
 
-    Search.associate = function(models) {
-      Search.belongsTo(models.User, {
-        foreignKey : {
+  Search.associate = function(models) {
+    Search.belongsTo(models.User, {
+      foreignKey : {
         allowNull : false
       }
     });  
