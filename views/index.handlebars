@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-10{{!--  col-xs-offset-1 --}}">
+    <div class="col-xs-1">
+      {{>signOut}}  
+    </div>
+    <div class="col-xs-10 col-xs-offset-1">
       <form class="form-inline" action="" method="post" name="form_citydetails" id="form_citydetails" enctype="multipart/form-data" onsubmit="return false;">
         <div class="form-group inline">
           <label id="search-form-label" for="f_elem_city">Search by City</label>
@@ -16,8 +19,7 @@
         </div>
         <button type="search" class="btn btn-default inline" id="search-btn">Search</button>
       </form>
-    </div>
-      {{>signOut}}     
+    </div>   
   </div> 
 
   <hr>
