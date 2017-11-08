@@ -75,3 +75,26 @@ p.error {
 .inline {
   margin : 5px 0px;
 }
+
+.panel > .panel-heading {
+  background-color : gray;
+  color : white;
+}
+
+caption {
+  color : white;
+  font-weight : bold;
+}
+
+th {
+  width : 38%;
+  text-decoration : underline;
+}
+
+td, th {
+  color : white;
+}
+
+a:hover {
+  cursor : grab;
+}
