@@ -1,6 +1,7 @@
-{{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}{{!-- 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
+
 
 
 <div class="container">
@@ -10,42 +11,49 @@
         <div class="form-group">
           <label for="username-input">Username</label>
           <div class="row">
-            <div class="col-xs-10">
+            <div class="col-xs-9">
             <input class="form-control" id="username-input" type="text">
             {{user}}
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-1">
             <a href="#">Change</a>
             </div>
+
+            <div class="col-xs-2">
+              {{>signOut}}
+            </div>
+
           </div>
         </div>
         <div class="form-group">
           <label for="email-input">Email</label>
           <div class="row">
-            <div class="col-xs-10">
+            <div class="col-xs-9">
             <input class="form-control" id="email-input" type="text">
             {{email}}
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-1">
             <a href="#">Change</a>
             </div>
+            <div class="col-xs-2"></div>
           </div>
         </div>
         <div class="form-group">
           <label for="password-input">Password</label>
           <div class="row">
-            <div class="col-xs-10">
+            <div class="col-xs-9">
             <input class="form-control" id="password-input" type="text">
             {{password}}
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-1">
             <a href="#">Change</a>
             </div>
+            <div class="col-xs-2"></div>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12">
-        <button class="btn btn-primary" id="add-user-btn" type="submit">Submit</button>
+        <button class="btn btn-primary btn-lg" id="add-user-btn" type="submit">Submit</button>
         </div>
       </div>
       </form>
