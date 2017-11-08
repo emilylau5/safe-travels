@@ -23,5 +23,6 @@ function deleteHotel(btnid) {
   queryURL = "/hotels/" + btnid + "?_method=DELETE"
   $.post(queryURL, function(response) {
     // getHotels();
+    window.location.reload();
   });
 }//end deleteHotel

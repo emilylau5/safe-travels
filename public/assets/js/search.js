@@ -31,7 +31,7 @@ function deleteSearches(btnid) {
 
   $.post(queryURL, function(response) {
     // getSearches();
-
+    window.location.reload();
   });
 }//end deleteSearch
 
