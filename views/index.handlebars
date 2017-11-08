@@ -27,8 +27,8 @@
   <div class="row">
     <div class="col-xs-4">
       <div class="panel panel-info">
-        <div class="panel-heading">Welcome, {{firstName}}!</div>
-        <div class="panel-body">
+        <div class="panel-heading">Welcome, {{user.firstName}}!</div>
+        <div class="panel-body" id="past">
           <table>
             <caption>Search History</caption>
             <tr>
@@ -38,7 +38,7 @@
             </tr>
             {{#each search}}
               <tr>
-                <td><a href="#" data-search-id={{id}} data-coordinates={{location}}>{{city}}</td>
+                <td><a target="_self" data-search-id={{id}} data-coordinates={{location}}>{{city}}</td>
                 <td>{{startDate}}</td>
                 <td>{{endDate}}</td>
               </tr>  
@@ -54,5 +54,6 @@
   </div>
 </div>
 <script src="assets/js/bookmark.js" type="text/javascript"></script>
+<script src="assets/js/search.js" type="text/javascript"></script>
 <script src="assets/js/maps.js" type="text/javascript"></script>
 <script src="assets/js/view.js" type="text/javascript"></script>
