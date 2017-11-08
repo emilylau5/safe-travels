@@ -75,41 +75,47 @@ function addUser(event) {
     passConfirm : passConfirm
   };
 
-  //send the POST request to the server
-  $.post("/users", newUser, function(data) {
-    //if the insert is successful
-    if ("outcome" in data) {
-      //route to search page
-      // console.log(data);
-      Cookies2.set("UserID", data.user.id);
-      window.location.href = "/search";
-    } //else if there is a mismatch in password entered
-    else if ("passwordIssue" in data) {
-      console.log("there is a mismatch in password");
-      //show the password validation error
-      $("#error-password-no-match").removeClass("invisible").addClass("visible");
-    } //else either the email, username or password already exists in the db
-    else if ("firstName" in data) {
-      console.log("The account info provided already exists");
-      console.log(data);
-      //if the first name already exists in the db
-      if (data.userName === userName) {
-        //show the username validation error
-        $("#error-username").removeClass("invisible").addClass("visible");
-      } //else if the password already exists in the db
-      else if (data.password === password) {
+  if (password !== passConfirm) {
+    //show the validation error on the browser
+    console.log("there is a mismatch in passwords");
+    $("#error-password-no-match").removeClass("invisible").addClass("visible");
+  } //else send the POST request to the server
+  else {
+    //send the POST request to the server
+    $.post("/users", newUser, function(data) {
+      //if the insert is successful
+      if ("outcome" in data) {
+        //route to search page
+        // console.log(data);
+        Cookies2.set("UserID", data.user.id);
+        window.location.href = "/search";
+      } //else if there is a mismatch in password entered
+      else if ("passwordIssue" in data) {
+        console.log("there is a mismatch in password");
         //show the password validation error
-        $("#error-password-not-available").removeClass("invisible").addClass("visible");
-      } //else if the email already exists
-      else if (data.email === email) {
-        //show the email validation error
-        $("#error-email").removeClass("invisible").addClass("visible");
+        $("#error-password-no-match").removeClass("invisible").addClass("visible");
+      } //else either the email, username or password already exists in the db
+      else if ("firstName" in data) {
+        console.log("The account info provided already exists");
+        console.log(data);
+        //if the first name already exists in the db
+        if (data.userName === userName) {
+          //show the username validation error
+          $("#error-username").removeClass("invisible").addClass("visible");
+        } //else if the password already exists in the db
+        else if (data.password === password) {
+          //show the password validation error
+          $("#error-password-not-available").removeClass("invisible").addClass("visible");
+        } //else if the email already exists
+        else if (data.email === email) {
+          //show the email validation error
+          $("#error-email").removeClass("invisible").addClass("visible");
+        }
+      } else {
+        console.log("There is something wrong with the info. The account cannot be added");
       }
-    } else {
-      console.log("There is something wrong with the info. The account cannot be added");
-    }
-    
-  });
+    });
+  }
 }
 
 function checkUser() {  
