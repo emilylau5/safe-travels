@@ -23,16 +23,18 @@ router.get("/", function(req, res) {
       where: {
         UserId : userID
       },
-      attributes:["id", "city", "startDate", "endDate"]
+      attributes:["id", "city", "startDate", "endDate"],
+      include: ["User"]
     }).then(function(data) {
       if(data.length) {
-        console.log(data);
+        // console.log(data);
         var searchData = [];
         for (var index in data) {
           searchData.push(data[index].dataValues);
         }
         var thing = {
-          search: searchData
+          search: searchData,
+          user: searchData[0].User
         }
         // res.json(req.headers.cookie);
         res.render("index", thing);

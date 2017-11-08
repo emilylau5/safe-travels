@@ -1,46 +1,51 @@
-{{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}{{!-- 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
-
-
-
 <div class="container">
-  <div class="panel panel-default">
-    <div class="panel-heading">Account Management&nbsp&nbsp&nbsp{{>signOut}}</div>
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item">Username: {{user.userName}}</li>
-          <li class="list-group-item">Email: {{user.email}}</li>
-        </ul>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">Account Management&nbsp&nbsp&nbsp{{>signOut}}</div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item">Username: {{user.userName}}</li>
+              <li class="list-group-item">Email: {{user.email}}</li>
+            </ul>
+          </div>
       </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">Saved Hotels</div>
-    <div class="panel-body">
-      {{#each bookmarks}}
-        <ul class="list-group">
-          <li class="list-group-item"><button class='delete-hotel btn btn-default' value={{id}}>x</button>&nbsp&nbsp&nbspHotel: {{name}}</li>
-          <li class="list-group-item">Rating: {{rating}}</li>
-          <li class="list-group-item">City: {{city}}</li>
-        </ul>
-      {{/each}}
     </div>
-  </div> 
-  <div class="panel panel-default">
-    <div class="panel-heading">Saved Searches</div>
-    <div class="panel-body">
-      {{#each searches}}
-        <ul class="list-group">
-          <li class="list-group-item"><button class='delete-search btn btn-default' value={{id}}>x</button>&nbsp&nbsp&nbspCity: {{city}} </li>
-          <li class="list-group-item">Start Date: {{startDate}}&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp End Date: {{endDate}}</li>
-          {{!-- <li class="list-group-item">End Date: {{endDate}}</li> --}}
-          {{!-- <button class='delete-search btn btn-default' value={{id}}>x</button> --}}
-        </ul>
-      {{/each}}
+  </div>  
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">Saved Hotels</div>
+        <div class="panel-body">
+          {{#each bookmarks}}
+            <ul class="list-group">
+              <li class="list-group-item"><button class='delete-hotel btn btn-default' value={{id}}>x</button>&nbsp&nbsp&nbspHotel: {{name}}</li>
+              <li class="list-group-item">Rating: {{rating}}</li>
+              <li class="list-group-item">City: {{city}}</li>
+            </ul>
+          {{/each}}
+        </div>
+      </div>     
     </div>
-  </div> 
+  </div>  
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">Saved Searches</div>
+        <div class="panel-body">
+          {{#each searches}}
+            <ul class="list-group">
+              <li class="list-group-item"><button class='delete-search btn btn-default' value={{id}}>x</button>&nbsp&nbsp&nbspCity: {{city}} </li>
+              <li class="list-group-item">Start Date: {{startDate}}&nbsp&nbsp&nbsp||&nbsp&nbsp&nbsp End Date: {{endDate}}</li>
+              {{!-- <li class="list-group-item">End Date: {{endDate}}</li> --}}
+              {{!-- <button class='delete-search btn btn-default' value={{id}}>x</button> --}}
+            </ul>
+          {{/each}}
+        </div>
+      </div>     
+    </div>
+  </div>  
 </div>
-
 
 <script src="../../assets/js/hotel.js" type="text/javascript"></script>
 <script src="../../assets/js/search.js" type="text/javascript"></script>
