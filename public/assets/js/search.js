@@ -1,17 +1,17 @@
 $(document).ready(function() {
 
-  $(".delete-hotel").on("click", function(e) {
-    e.preventdefault()
+  $(".delete-search").on("click", function(e) {
+    e.preventDefault()
     var id = $(this).val()
     console.log(id)
     deleteSearches(id);
   })
-}
+});
 
 var search = [];
 
 // run this function on page load of /hotels getHotels();
-getHotels();
+// getHotels();
 
 function getSearches() {
   $.get("/searches", function(data) {
@@ -20,8 +20,10 @@ function getSearches() {
 }//end getHotels
 
 function deleteSearches(btnid) {
-  queryURL = "/searches/" + btnid + "?_method=DELETE"
+  queryURL = "/search/" + btnid + "?_method=DELETE"
+
   $.post(queryURL, function(response) {
-    getSearches();
+    // getSearches();
+    
   });
-}//end deleteHote
+}//end deleteSearch
