@@ -43,7 +43,7 @@ app.get("/", function(req, res) {
     var userID = cookieString[1];
     console.log({userID});
     // res.json(req.headers.cookie);
-    res.render("index");
+    res.redirect("/search");
   }
 });
 app.use("/users", userRoutes);
