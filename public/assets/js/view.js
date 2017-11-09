@@ -10,7 +10,9 @@ $(document).ready(function() {
   $("#add-user").on("click", addUser);
 
   //listener for existing user login
-  $("#login-submit").on("click", checkUser);
+  $("#login-submit").on("click", function(event) {
+    checkUser(event);
+  });
 });
 
 // //avoid naming conflicts
@@ -24,7 +26,7 @@ $(function () {
   $("#f_elem_city").autocomplete({
     source: function (request, response) {
      $.getJSON(
-      "http://gd.geobytes.com/AutoCompleteCity?callback=?&filter=US,CA&q="+request.term,
+      "https://gd.geobytes.com/AutoCompleteCity?callback=?&filter=US,CA&q="+request.term,
       function (data) {
        response(data);
       }
@@ -118,7 +120,7 @@ function addUser(event) {
   }
 }
 
-function checkUser() {  
+function checkUser(event) {  
   //prevent page from refreshing by default
   event.preventDefault();
 
