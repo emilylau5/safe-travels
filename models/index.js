@@ -8,8 +8,21 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 
-if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+//for heroku
+// var database = process.env.DATABASE_URL || ''
+// var sequelize = "";
+
+// if (process.env.DATABASE_URL) {
+//   sequelize = new Sequelize(database)
+// }
+// else {
+//   sequelize = new Sequelize(database, 'postgres', '', {
+//     dialect: 'postgres'
+//   });
+// }
+
+if (process.env.JAWSDB_URL) {
+  var sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
