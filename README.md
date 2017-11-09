@@ -23,7 +23,7 @@ For a new user
 
 ### Demo
 
-![Safe Travels Demo](public/assets/images/Safe_Travels_Demo_480p.mov)
+![Safe Travels Demo](public/assets/images/Safe_Travels_Demo_720p.mp4)
 
 
 ### Front End Tech
