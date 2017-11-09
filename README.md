@@ -23,6 +23,11 @@ For a new user
 
 ### Demo
 
+#### *Sign Up / Login Page*
+
+#### *Search Page*
+
+#### *Account Management Page*
 
 ### Front End Tech
 * HTML5
