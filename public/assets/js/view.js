@@ -26,7 +26,7 @@ $(function () {
   $("#f_elem_city").autocomplete({
     source: function (request, response) {
      $.getJSON(
-      "https://gd.geobytes.com/AutoCompleteCity?callback=?&filter=US,CA&q="+request.term,
+      "http://gd.geobytes.com/AutoCompleteCity?callback=?&filter=US,CA&q="+request.term,
       function (data) {
        response(data);
       }
@@ -181,7 +181,7 @@ function getcitydetails(fqcn) {
   if (typeof fqcn == "undefined") fqcn = jQuery("#f_elem_city").val();
   cityfqcn = fqcn;
   if (cityfqcn) {
-    $.getJSON("https://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn, function (data) {
+    $.getJSON("http://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn, function (data) {
       city = {
         location: {
           lat: data.geobyteslatitude, 
