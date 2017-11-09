@@ -13,11 +13,11 @@ For a new user
 2. After successful creation of new account, user is taken to the search page
 3. Enter the city, start date and end date of your travel
 4. A google map is shown below the search bar
-  * Hotels are rendered as pins
-    * Click on any pin to see hotel info - name, address, rating
-    * Click on the bookmark button to save the hotel in yout hotel bookmark
-  * Crime data is rendered as a heat map - red areas are the places you want to keep in your radar as places to avoid (if you can) 
-  * Past searches are shown on the side panel - the google map can be re-rendered (to show updated crime heat map) by clicking on the name of the city 
+    * Hotels are rendered as pins
+      * Click on any pin to see hotel info - name, address, rating
+      * Click on the bookmark button to save the hotel in yout hotel bookmark
+    * Crime data is rendered as a heat map - red areas are the places you want to keep in your radar as places to avoid (if you can) 
+    * Past searches are shown on the side panel - the google map can be re-rendered (to show updated crime heat map) by clicking on the name of the city 
 5. User can also navigate to the Account Manager page to view or delete Bookmarked Hotels and Search History.
 
 
