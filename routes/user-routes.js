@@ -55,7 +55,7 @@ router.post("/", function(req, res) {
   db.User.findOne({
     where : {
       $or : {
-        userName : req.body.UserName,
+        userName : req.body.userName,
         // password : req.body.password,
         email : req.body.email
       } 
