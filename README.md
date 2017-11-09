@@ -9,9 +9,9 @@ We were motivated to create this app because we wanted people to have peace of m
 * Javascript, jQuery, Node.js
 * Handlebars
 * Express.js, Express Router, Middleware 
-* Sequelize, SQL, MySQL Workbench,
-* Spotcrime
-* Bcrypt
-* Google Places, Google Maps, Google Visualization Library
+* Sequelize, SQL, MySQL Workbench
 * Node Rest Client
-* Geobytes
+* [Spotcrime](https://www.npmjs.com/package/spotcrime)
+* [Bcrypt](https://www.npmjs.com/package/bcrypt)
+* [Google Places, Google Maps, Google Visualization Library](https://developers.google.com/maps/)
+* [Geobytes](http://geobytes.com/free-ajax-cities-jsonp-api/)
