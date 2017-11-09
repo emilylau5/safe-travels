@@ -181,7 +181,7 @@ function getcitydetails(fqcn) {
   if (typeof fqcn == "undefined") fqcn = jQuery("#f_elem_city").val();
   cityfqcn = fqcn;
   if (cityfqcn) {
-    $.getJSON("http://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn, function (data) {
+    $.getJSON("https://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn, function (data) {
       city = {
         location: {
           lat: data.geobyteslatitude, 
