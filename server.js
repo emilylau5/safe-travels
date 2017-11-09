@@ -8,7 +8,7 @@ var methodOverride = require("method-override");
 var db = require("./models");
 
 //initialize an Express application
-var app = express();
+var app = express(); 
 
 //assign a port for the app
 var PORT = process.env.PORT || 8050;
