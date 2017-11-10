@@ -50,4 +50,9 @@ For a new user
 * [Geobytes](http://geobytes.com/free-ajax-cities-jsonp-api/)
 
 
+### Project Contributors
+* Justin Wong - [jwong1219](https://github.com/jwong1219)
+* Winfred Sunga - [winfredSunga-jw0226](https://github.com/winfredSunga-jw0226)
+* Emily Lau - [emilylau5](https://github.com/emilylau5)
+* Maxwilliam Chao - [maxwilliamchao](https://github.com/maxwilliamchao)
 
