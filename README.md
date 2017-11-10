@@ -50,12 +50,9 @@ For a new user
 * [Geobytes](http://geobytes.com/free-ajax-cities-jsonp-api/)
 
 
-<!-- Comprehensive README:
-Synopsis
-At the top of the file there should be a short introduction and/ or overview that explains what the project is.
-Motivation
-A short description of the motivation behind the creation and maintenance of the project. This should explain why the project exists.
-Code Example
-Listing of Technologies Used
-Show what the APP does as concisely as possible: Screen Shots of relevant code, gif of the working application -->
+### Project Contributors
+* Justin Wong - [jwong1219](https://github.com/jwong1219)
+* Winfred Sunga - [winfredSunga-jw0226](https://github.com/winfredSunga-jw0226)
+* Emily Lau - [emilylau5](https://github.com/emilylau5)
+* Maxwilliam Chao - [maxwilliamchao](https://github.com/maxwilliamchao)
 
