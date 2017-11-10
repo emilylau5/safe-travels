@@ -25,6 +25,10 @@ For a new user
 
 ![Safe Travels Demo](public/assets/images/Safe_Travels_Demo_720p.mp4)
 
+### Use the App
+
+[Safe Travels App](https://gentle-cliffs-96233.herokuapp.com/search)
+
 
 ### Front End Tech
 * HTML5
