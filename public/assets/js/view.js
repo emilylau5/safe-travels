@@ -24,7 +24,7 @@ $(function () {
   $("#f_elem_city").autocomplete({
     source: function (request, response) {
      $.getJSON(
-      "https://gd.geobytes.com/AutoCompleteCity?callback=?&q="+request.term,
+      "https://gd.geobytes.com/AutoCompleteCity?key=a3cc0dbcc33d5ab9e28c3db728646ee7&callback=?&q="+request.term,
       function (data) {
        response(data);
       }
@@ -179,7 +179,7 @@ function getcitydetails(fqcn) {
   if (typeof fqcn == "undefined") fqcn = jQuery("#f_elem_city").val();
   cityfqcn = fqcn;
   if (cityfqcn) {
-    $.getJSON("https://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn, function (data) {
+    $.getJSON("https://gd.geobytes.com/GetCityDetails?key=a3cc0dbcc33d5ab9e28c3db728646ee7&callback=?&fqcn="+cityfqcn, function (data) {
       city = {
         location: {
           lat: data.geobyteslatitude, 
